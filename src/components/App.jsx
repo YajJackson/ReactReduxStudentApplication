@@ -5,7 +5,7 @@ import Header from './Header.jsx'
 class App extends Component {
   render () {
     return (
-      <Header title="YajPlate"/>
+      <Header title="Students"/>
     );
   }
 }

@@ -31,9 +31,8 @@ function Header(props) {
             <MenuIcon />
           </IconButton>
           <Typography type="title" color="inherit" className={classes.flex}>
-            YajPlate - React | Material-ui Template
+            Student Portal
           </Typography>
-          <Button color="contrast">Login</Button>
         </Toolbar>
       </AppBar>
     </div>
