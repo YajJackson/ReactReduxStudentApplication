@@ -9,7 +9,7 @@ module.exports = {
     'react-hot-loader/patch',
     'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/only-dev-server',
-    DEV + "/index.jsx",
+    DEV + "/index.js",
     DEV + "/main.scss"
   ],
   devtool: "inline-source-maps",

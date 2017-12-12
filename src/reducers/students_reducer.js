@@ -1,4 +1,4 @@
-import * as actions from '../actions/students';
+import * as actions from '../actions/student_actions';
 
   const INITIAL_STATE = { 
                           studentsList:  { students: [], error:null, loading: false },  
@@ -10,15 +10,15 @@ import * as actions from '../actions/students';
 export default function(state = INITIAL_STATE, action) {
   let error;
   switch(action.type) {
-   
-  case actions.FETCH_STUDENTS:// start fetching posts and set loading = true
+  
+  case actions.FETCH_STUDENTS:
   	return { ...state, studentsList: {students:[], error: null, loading: true} }; 
-  case actions.FETCH_STUDENTS_SUCCESS:// return list of posts and make loading = false
+  case actions.FETCH_STUDENTS_SUCCESS:
     return { ...state, studentsList: {students: action.payload, error:null, loading: false} };
-  case actions.FETCH_STUDENTS_FAILURE:// return error and make loading = false
-    error = action.payload || {message: action.payload.message};//2nd one is network or server down errors
+  case actions.FETCH_STUDENTS_FAILURE:
+    error = action.payload || {message: action.payload.message}; //2nd one is network or server down errors
     return { ...state, studentsList: {students: [], error: error, loading: false} };
-  case actions.RESET_STUDENTS:// reset postList to initial state
+  case actions.RESET_STUDENTS:
     return { ...state, studentsList: {students: [], error:null, loading: false} };
 
   case actions.FETCH_STUDENT:
@@ -39,9 +39,8 @@ export default function(state = INITIAL_STATE, action) {
     error = action.payload || {message: action.payload.message};//2nd one is network or server down errors
   	return {...state, newStudent: {student:null, error:error, loading: false}}
   case actions.RESET_NEW_STUDENT:
-  	return {...state,  newStudent:{student:null, error:null, loading: false}}
-
-
+    return {...state,  newStudent:{student:null, error:null, loading: false}}
+    
   case actions.DELETE_STUDENT:
    	return {...state, deletedStudent: {...state.deletedStudent, loading: true}}
   case actions.DELETE_POST_SUCCESS:
