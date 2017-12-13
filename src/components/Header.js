@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
@@ -10,30 +10,19 @@ import ModeEditIcon from 'material-ui-icons/ModeEdit';
 import DeleteIcon from 'material-ui-icons/Delete'
 
 class Header extends Component {
+  componentDidMount() {
 
-  componentWillUnmount() {
-    //Important to refresh global state when remounting
-     this.props.resetMe();
   }
-
-  componentWillReceiveProps(nextProps) {
-    if(nextProps.deletedPost.error && nextProps.deletedPost.error.message) { //delete fail
-      alert(nextProps.deletedPost.error.message || 'Could not delete. Please try again.');
-    } else if(nextProps.deletedPost.post && !nextProps.deletedPost.error) { //delete success
-      this.context.router.push('/');
-    }
-  }
-  
 	renderLinks() {
     const { type } = this.props
-    
-		if(type === 'student_index') {
+    console.log('Inside RenderLinks', this.props, window.location)
+		if(type === 'student_home') {
         return (
         <div style= {{ width: '100%' }}>
           <AppBar position="static">
             <Toolbar>
               <Typography type="title" color="inherit" style={{ flex: 1 }}> Student Portal </Typography>
-              <Button color="contrast" component={({...props}) => <Link to='/students' {...props} />}> New Student </Button>
+              <Button color="contrast" component={({...props}) => <Link to='/students/new' {...props} />}> New Student </Button>
             </Toolbar>
           </AppBar>
         </div>
@@ -50,7 +39,7 @@ class Header extends Component {
           </AppBar>
         </div>
   		 ) 		
-  	} else if(type === 'student_show') {
+  	} else if(type === 'student_details') {
   			return (
           <div style= {{ width: '100%' }}>
             <AppBar position="static">

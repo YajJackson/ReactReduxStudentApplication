@@ -1,18 +1,17 @@
-import React from "react"
-import ReactDOM from "react-dom"
-import { Provider } from 'react-redux'
-import { BrowserRouter as Router } from 'react-router-dom'
-import routes from './routes'
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import AppContainer from "./containers/appContainer";
 import configureStore from './store/configureStore'
-require("./main.scss")
 
-const store = configureStore()
-console.log("Index Working", routes)
+require("./main.scss");
+
+const store = configureStore();
+
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
-      {routes}
-    </Router>
-  </Provider>
-  , document.getElementById('root')
+      <AppContainer />
+  </Provider>,
+  document.getElementById("root")
 );
