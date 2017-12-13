@@ -15,7 +15,7 @@ class Header extends Component {
   }
 	renderLinks() {
     const { type } = this.props
-    console.log('Inside RenderLinks', this.props, window.location)
+    
 		if(type === 'student_home') {
         return (
         <div style= {{ width: '100%' }}>
