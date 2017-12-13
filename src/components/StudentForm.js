@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import { createStudent, createStudentSuccess, createStudentFailure, resetNewStudent } from '../actions/student_actions'
+import {EnvironmentConstants} from '../gobals'
 import Input from 'material-ui/Input';
 import Button from 'material-ui/Button';
-import {EnvironmentConstants} from '../gobals'
+import Grid from 'material-ui/Grid';
 
 //Client side validation
 function validate(values) {
@@ -39,7 +40,7 @@ class StudentForm extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.newStudent.student && !nextProps.newStudent.error) {
-      window.location.replace(EnvironmentConstants.RootUrl);
+      window.location.replace(EnvironmentConstants.RootUrl)
     }
   }
 
@@ -76,26 +77,40 @@ class StudentForm extends Component {
     const {submitting, newStudent} = this.props;
 
     return (
-      <div style={{display:'flex', flexWrap: 'wrap'}}>
+      <div style={{flexGrow: 1, marginTop: 30}}>
         <form onSubmit={this.handleSubmit}>
-          <Input
-            placeholder="First"
-            onChange={this.handleChange}
-            style={{ marginLeft: '10px', marginRight: '10px', marginTop: '10px', width: '200px' }}
-          />
-          <Input
-            placeholder="Last"
-            onChange={this.handleChange}
-            style={{ marginLeft: '10px', marginRight: '10px', marginTop: '10px', width: '200px' }}
-          />
-          <Input
-            placeholder="Image"
-            onChange={this.handleChange}
-            style={{ marginLeft: '10px', marginRight: '10px', marginTop: '10px', width: '100%' }}
-          />
-          <Button raised color='primary' type='submit'>
-            Create
-          </Button>
+          <Grid container spacing={24}>
+            <Grid item xs={3}></Grid>
+
+            <Grid container xs={6}>
+              <Grid item xs={6}>
+                <Input
+                  onChange={this.handleChange}
+                  placeholder="First"
+                  style={{ marginTop: '10px', width: '100%'}}
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <Input
+                  onChange={this.handleChange}
+                  placeholder="Last"
+                  style={{ marginTop: '10px', width: '100%'}}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <Input
+                  onChange={this.handleChange}
+                  placeholder="Image"
+                  style={{ marginTop: '10px', width: '100%' }}
+                />
+              </Grid>
+              <Grid item xs={12} style={{marginLeft:0}}>
+                <Button raised color='primary' type='submit' style={{ width: '100%', marginLeft: '0' }}>
+                  Create
+                </Button>
+              </Grid>
+            </Grid>
+          </Grid>
         </form>
       </div>
     )

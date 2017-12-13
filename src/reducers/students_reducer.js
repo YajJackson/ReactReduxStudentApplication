@@ -43,7 +43,7 @@ export default function(state = INITIAL_STATE, action) {
     
   case actions.DELETE_STUDENT:
    	return {...state, deletedStudent: {...state.deletedStudent, loading: true}}
-  case actions.DELETE_POST_SUCCESS:
+  case actions.DELETE_STUDENT_SUCCESS:
   	return {...state, deletedStudent: {student:action.payload, error:null, loading: false}}
   case actions.DELETE_STUDENT_FAILURE:
     error = action.payload || {message: action.payload.message};//2nd one is network or server down errors

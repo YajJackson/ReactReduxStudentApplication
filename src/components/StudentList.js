@@ -36,17 +36,11 @@ class StudentList extends Component {
     }
 
     return (
-      <div>
-        <Grid container>
+      <div style={{flexGrow: 1, marginTop: 30}}>
+        <Grid container spacing={24}>
+          <Grid item xs={3}></Grid>
           <Grid item xs={12} md={6}>
-            <Typography type="title">
-              Students
-            </Typography>
-            <div>
-              <List>
-                {this.renderStudents(this.props.studentsList.students)}
-              </List>
-            </div>
+            {this.renderStudents(this.props.studentsList.students)}
           </Grid>
         </Grid>
       </div>

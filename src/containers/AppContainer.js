@@ -23,7 +23,7 @@ export default class AppContainer extends Component {
       return (
         <BrowserRouter>
           <div>
-            <NavBar />
+            {/* <NavBar /> */}
             <div>
               <Switch>
                   <Route path="/" exact component={StudentHome} />

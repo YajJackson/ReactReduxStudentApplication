@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import {EnvironmentConstants} from '../gobals'
 //student list
 export const FETCH_STUDENTS = 'FETCH_STUDENTS'
 export const FETCH_STUDENTS_SUCCESS = 'FETCH_STUDENTS_SUCCESS'
@@ -142,6 +142,8 @@ export function deleteStudent(id) {
 }
 
 export function deleteStudentSuccess(deletedStudent) {
+  window.location.replace(EnvironmentConstants.RootUrl)
+  alert('Successfully deleted: ', deletedStudent)
   return {
     type: DELETE_STUDENT_SUCCESS,
     payload: deletedStudent

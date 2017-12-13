@@ -5,19 +5,19 @@ import Header from '../components/Header'
 
 function mapStateToProps(state) {
   return { 
-    deletedPost: state.students.deletedStudent
+    deletedstudent: state.students.deletedStudent
   };
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onDeleteClick: () => {
-      dispatch(deleteStudent(ownProps.studentId))
+      dispatch(deleteStudent(parseInt(window.location.href.split('/').splice(-1)[0])))
       .then((response) => {
         !response.error ? dispatch(deleteStudentSuccess(response.payload)) : dispatch(deleteStudentFailure(response.payload));
       })
     },
-    
+
     resetMe: () => {
       dispatch(resetDeletedStudent())
     }
