@@ -34,7 +34,6 @@ class Header extends Component {
             <Toolbar>
               <Button color="contrast" component={({...props}) => <Link to='/' {...props} />}> Back </Button>
               <Typography type="title" color="inherit" style={{ flex: 1 }}></Typography>
-              <Button color="contrast" component={({...props}) => <Link to='/' {...props} />}> Create </Button>
             </Toolbar>
           </AppBar>
         </div>

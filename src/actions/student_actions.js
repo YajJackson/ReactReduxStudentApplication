@@ -30,7 +30,8 @@ const ROOT_URL = location.href.indexOf('localhost') > 0 ? 'http://localhost:4567
 export function fetchStudents() {
   const request = axios({
     method: 'get',
-    url: `${ROOT_URL}/students`
+    url: `${ROOT_URL}/students`,
+    headers: {}
   });
 
   return {
@@ -62,8 +63,9 @@ export function resetStudentFields() {
 export function createStudent(props) {
   const request = axios({
     method: 'post',
-    data: props,
-    url: `${ROOT_URL}/students`
+    data: JSON.stringify(props),
+    url: `${ROOT_URL}/students`,
+    headers: {}
   });
 
   return {
