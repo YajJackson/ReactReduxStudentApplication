@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {EnvironmentConstants} from '../gobals'
+
 //student list
 export const FETCH_STUDENTS = 'FETCH_STUDENTS'
 export const FETCH_STUDENTS_SUCCESS = 'FETCH_STUDENTS_SUCCESS'
@@ -24,6 +25,12 @@ export const DELETE_STUDENT_SUCCESS = 'DELETE_STUDENT_SUCCESS'
 export const DELETE_STUDENT_FAILURE = 'DELETE_STUDENT_FAILURE'
 export const RESET_DELETED_STUDENT = 'RESET_DELETED_STUDENT'
 
+//UPDATE student
+export const UPDATE_STUDENT = 'UPDATE_STUDENT'
+export const UPDATE_STUDENT_SUCCESS = 'UPDATE_STUDENT_SUCCESS'
+export const UPDATE_STUDENT_FAILURE = 'UPDATE_STUDENT_FAILURE'
+export const RESET_UPDATE_STUDENT = 'UPDATE_DELETED_STUDENT'
+
 
 const ROOT_URL = location.href.indexOf('localhost') > 0 ? 'http://localhost:4567/api' : '/api'
 
@@ -32,26 +39,26 @@ export function fetchStudents() {
     method: 'get',
     url: `${ROOT_URL}/students`,
     headers: {}
-  });
+  })
 
   return {
     type: FETCH_STUDENTS,
     payload: request
-  };
+  }
 }
 
 export function fetchStudentsSuccess(students) {
   return {
     type: FETCH_STUDENTS_SUCCESS,
     payload: students
-  };
+  }
 }
 
 export function fetchStudentsFailure(error) {
   return {
     type: FETCH_STUDENTS_FAILURE,
     payload: error
-  };
+  }
 }
 
 export function resetStudentFields() {
@@ -66,26 +73,26 @@ export function createStudent(props) {
     data: JSON.stringify(props),
     url: `${ROOT_URL}/students`,
     headers: {}
-  });
+  })
 
   return {
     type: CREATE_STUDENT,
     payload: request
-  };
+  }
 }
 
 export function createStudentSuccess(newStudent) {
   return {
     type: CREATE_STUDENT_SUCCESS,
     payload: newStudent
-  };
+  }
 }
 
 export function createStudentFailure(error) {
   return {
     type: CREATE_STUDENT_FAILURE,
     payload: error
-  };
+  }
 }
 
 export function resetNewStudent() {
@@ -101,12 +108,12 @@ export function resetDeletedStudent() {
 }
 
 export function fetchStudent(id) {
-  const request = axios.get(`${ROOT_URL}/students/${id}`);
+  const request = axios.get(`${ROOT_URL}/students/${id}`)
 
   return {
     type: FETCH_STUDENT,
     payload: request
-  };
+  }
 }
 
 export function fetchStudentSuccess(activeStudent) {
@@ -120,7 +127,7 @@ export function fetchStudentFailure(error) {
   return {
     type: FETCH_STUDENT_FAILURE,
     payload: error
-  };
+  }
 }
 
 export function resetActiveStudent() {
@@ -133,12 +140,12 @@ export function deleteStudent(id) {
   const request = axios({
     method: 'delete',
     url: `${ROOT_URL}/students/${id}`
-  });
+  })
 
   return {
     type: DELETE_STUDENT,
     payload: request
-  };
+  }
 }
 
 export function deleteStudentSuccess(deletedStudent) {
@@ -147,12 +154,35 @@ export function deleteStudentSuccess(deletedStudent) {
   return {
     type: DELETE_STUDENT_SUCCESS,
     payload: deletedStudent
-  };
+  }
 }
 
 export function deleteStudentFailure(response) {
   return {
     type: DELETE_STUDENT_FAILURE,
     payload: response
-  };
+  }
+}
+
+export function updateStudent(props, id) {
+  const request = axios({
+    method: 'put',
+    data: JSON.stringify(props),
+    url: `${ROOT_URL}/students/${id}`,
+    headers: {}
+  })
+
+  return {
+    type: UPDATE_STUDENT,
+    payload: request
+  }
+}
+
+export function updateStudentSuccess(updatedStudent) {
+  window.location.replace(EnvironmentConstants.RootUrl)
+  alert('Successfully updated: ', updatedStudent)
+  return {
+    type: UPDATE_STUDENT_SUCCESS,
+    payload: updatedStudent
+  }
 }

@@ -4,7 +4,8 @@ import * as actions from '../actions/student_actions';
                           studentsList:  { students: [], error:null, loading: false },  
 							            newStudent: { student:null, error: null, loading: false }, 
 							            activeStudent: { student:null, error:null, loading: false }, 
-							            deletedStudent: { student: null, error:null, loading: false },
+                          deletedStudent: { student: null, error:null, loading: false },
+                          updatedStudent: { student: null, error:null, loading: false },
 						            }
 
 export default function(state = INITIAL_STATE, action) {
@@ -49,7 +50,11 @@ export default function(state = INITIAL_STATE, action) {
     error = action.payload || {message: action.payload.message};//2nd one is network or server down errors
   	return {...state, deletedStudent: {student:null, error:error, loading: false}}
   case actions.RESET_DELETED_STUDENT:
-  	return {...state,  deletedStudent:{student:null, error:null, loading: false}}
+    return {...state,  deletedStudent:{student:null, error:null, loading: false}}
+  case actions.UPDATE_STUDENT:
+    return {...state, updatedStudent: {...state.updatedStudent, loading: true}}
+  case actions.UPDATE_STUDENT_SUCCESS:
+    return {...state, updatedStudent: {student:action.payload, error:null, loading: false}}
   default:
     return state;
   }

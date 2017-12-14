@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux'
 import { Link, Route } from 'react-router-dom';
+import {EnvironmentConstants} from '../gobals'
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
@@ -45,7 +46,7 @@ class Header extends Component {
               <Toolbar>
                 <Button color="contrast" component={({...props}) => <Link to='/' {...props} />}> Back </Button>
                 <Typography type="title" color="inherit" style={{ flex: 1 }}></Typography>
-                <Button fab mini color="contrast" aria-label="edit" component={({...props}) => <Link to='/' {...props} />} style={{margin: '5px'}}>
+                <Button fab mini color="contrast" aria-label="edit" onClick={()=> window.location.replace(`${EnvironmentConstants.RootUrl}students/edit/${parseInt(window.location.href.split('/').splice(-1)[0])}`) } style={{margin: '5px'}}>
                   <ModeEditIcon />
                 </Button>
                 <Button fab mini color="accent" aria-label="delete" onClick={()=> {this.props.onDeleteClick()}} style={{margin: '5px'}}>
@@ -55,7 +56,18 @@ class Header extends Component {
             </AppBar>
           </div>
   		  )
-  	}
+  	} else if (type === 'student_update') {
+      return (
+        <div style= {{ width: '100%' }}>
+          <AppBar position="static">
+            <Toolbar>
+              <Button color="contrast" component={({...props}) => <Link to='/' {...props} />}> Back </Button>
+              <Typography type="title" color="inherit" style={{ flex: 1 }}></Typography>
+            </Toolbar>
+          </AppBar>
+        </div>
+      )
+    }
 	}
 
 	render() {

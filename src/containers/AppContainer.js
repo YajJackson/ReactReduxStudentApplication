@@ -31,6 +31,7 @@ export default class AppContainer extends Component {
                   <Route path="/students/new" exact component={StudentNew} />
                   <Route path="/students/details" exact component={StudentDetails} />
                   <Route path="/students/details/:id" exact component={StudentDetails} />
+                  <Route path="/students/edit/:id"  component={StudentDetails} />
 
                   <Route render={
                       props =>
