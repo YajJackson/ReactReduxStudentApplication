@@ -4,6 +4,7 @@ import { Link, Route } from 'react-router-dom'
 import List from 'material-ui/List'
 import Grid from 'material-ui/Grid'
 import Typography from 'material-ui/Typography'
+import { LinearProgress } from 'material-ui/Progress';
 import StudentListItem from './StudentListItem'
 
 class StudentList extends Component {
@@ -13,9 +14,10 @@ class StudentList extends Component {
 
   renderStudents(students) {
     if (students[0]){
-      return students.map((student) => {
+      return students.map((student, i) => {
         return (
-          <StudentListItem 
+          <StudentListItem
+            key={student._Id}
             student={student}
           />
         )
@@ -30,7 +32,11 @@ class StudentList extends Component {
     const { students, loading, error } = this.props.studentsList;
 
     if(loading) {
-      return <div><h1>students</h1><h3>Loading...</h3></div>      
+      return (
+        <div style={{width:'100%', marginTop:'25%'}}>
+          <LinearProgress mode="query" style={{marginLeft:'15%', marginRight:'15%'}} />
+        </div>
+      )     
     } else if(error) {
       return <div>Error: {error.message}</div>
     }
