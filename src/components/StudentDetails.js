@@ -1,23 +1,27 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import Card, { CardMedia } from 'material-ui/Card';
-import Typography from 'material-ui/Typography';
-import Paper from 'material-ui/Paper';
-import Grid from 'material-ui/Grid';
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import Card, { CardMedia } from 'material-ui/Card'
+import Typography from 'material-ui/Typography'
+import Paper from 'material-ui/Paper'
+import Grid from 'material-ui/Grid'
 
-class StudentDetails extends Component {
+export default class StudentDetails extends Component {
+  constructor(props) {
+    super(props)
+  }
   componentWillUnmount() {
-     this.props.resetMe();
+     this.props.resetMe()
   }
 
   componentDidMount() {
-    this.props.fetchStudent(this.props.studentId);
+    this.props.fetchStudent(this.props.studentId)
   }
 
   render() {
-    const { student, loading, error } = this.props.activeStudent;
+    const { student, loading, error } = this.props.activeStudent
+
     if (loading) {
-      return <div className="container">Loading...</div>;
+      return <div className="container">Loading...</div>
     } else if(error) {
       return  <div className="alert alert-danger">{error.message}</div>
     } else if(!student) {
@@ -47,8 +51,6 @@ class StudentDetails extends Component {
           </Paper>
         </Grid>
       </Grid>
-    );
+    )
   }
 }
-
-export default StudentDetails;

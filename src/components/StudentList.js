@@ -4,28 +4,21 @@ import { Link, Route } from 'react-router-dom'
 import List from 'material-ui/List'
 import Grid from 'material-ui/Grid'
 import Typography from 'material-ui/Typography'
-import { LinearProgress } from 'material-ui/Progress';
+import { LinearProgress } from 'material-ui/Progress'
 import StudentListItem from './StudentListItem'
 
-class StudentList extends Component {
+export default class StudentList extends Component {
+  constructor(props) {
+    super(props)
+    
+  }
   componentWillMount() {
     this.props.fetchStudents()
   }
 
   renderStudents(students) {
-    if (students[0]){
-      return students.map((student, i) => {
-        return (
-          <StudentListItem
-            key={student._Id}
-            student={student}
-          />
-        )
-      })
-      return (
-        <li></li>
-      )
-    }
+    return students[0] ? 
+      students.map((student) => <StudentListItem key={student._Id} student={student} />) : <li></li>
   }
 
   render() {
@@ -53,6 +46,3 @@ class StudentList extends Component {
     );
   }
 }
-
-
-export default StudentList

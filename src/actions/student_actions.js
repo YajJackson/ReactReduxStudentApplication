@@ -150,7 +150,7 @@ export function deleteStudent(id) {
 
 export function deleteStudentSuccess(deletedStudent) {
   window.location.replace(EnvironmentConstants.RootUrl)
-  alert('Successfully deleted: ', deletedStudent)
+  alert('Successfully deleted')
   return {
     type: DELETE_STUDENT_SUCCESS,
     payload: deletedStudent
@@ -164,10 +164,10 @@ export function deleteStudentFailure(response) {
   }
 }
 
-export function updateStudent(props, id) {
+export function updateStudent(student, id) {
   const request = axios({
     method: 'put',
-    data: JSON.stringify(props),
+    data: JSON.stringify(student),
     url: `${ROOT_URL}/students/${id}`,
     headers: {}
   })
@@ -180,7 +180,7 @@ export function updateStudent(props, id) {
 
 export function updateStudentSuccess(updatedStudent) {
   window.location.replace(EnvironmentConstants.RootUrl)
-  alert('Successfully updated: ', updatedStudent)
+  alert('Successfully updated', updatedStudent)
   return {
     type: UPDATE_STUDENT_SUCCESS,
     payload: updatedStudent

@@ -1,12 +1,12 @@
-import StudentDetails from '../components/StudentDetails.js';
-import { fetchStudent, fetchStudentSuccess, fetchStudentFailure, resetActiveStudent, resetDeletedStudent } from '../actions/student_actions';
-import { connect } from 'react-redux';
+import StudentDetails from '../components/StudentDetails.js'
+import { fetchStudent, fetchStudentSuccess, fetchStudentFailure, resetActiveStudent, resetDeletedStudent } from '../actions/student_actions'
+import { connect } from 'react-redux'
 
 function mapStateToProps(globalState, ownProps) {
   return {
     activeStudent: globalState.students.activeStudent,
-    studentId: ownProps.id
-  };
+    studentId: ownProps.id,
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {

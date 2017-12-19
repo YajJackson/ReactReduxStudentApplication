@@ -8,19 +8,18 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(resetNewStudent())
     },
 
-    onUpdateClick: (student) => {
-      dispatch(updateStudent(studentd))
-        .then(result => {
-          dispatch(updateStudentSuccess(result.payload.data))
-        })
+    onUpdateClick: (student, id) => {
+      dispatch(updateStudent(student, id))
+        .then(result => dispatch(updateStudentSuccess(result.payload.data)))
     }
   }
 }
 
 function mapStateToProps(state, ownProps) {
   return {
-    newStudent: state.students.newStudent
-  };
+    activeStudent: state.students.activeStudent,
+    updatedStudent: state.students.updatedStudent
+  }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(StudentForm)
+export default connect(mapStateToProps, mapDispatchToProps)(StudentUpdate)

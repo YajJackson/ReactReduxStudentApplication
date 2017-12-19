@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import HeaderContainer from '../containers/HeaderContainer';
-import StudentFormContainer from '../containers/StudentFormContainer';
+import StudentUpdateContainer from '../containers/StudentUpdateContainer';
 
-class StudentNew extends Component {
+class StudentUpdate extends Component {
+
   render() {
     return (
       <div>
         <HeaderContainer type="student_update"/>
-        <StudentFormContainer />
+        <StudentUpdateContainer id={this.props.match.params.id}/>
       </div>
-    );
+    )
   }
 }
 
-export default StudentNew;
+export default StudentUpdate;

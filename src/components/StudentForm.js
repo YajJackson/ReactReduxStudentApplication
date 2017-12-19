@@ -2,27 +2,18 @@ import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import { createStudent, createStudentSuccess, createStudentFailure, resetNewStudent } from '../actions/student_actions'
 import {EnvironmentConstants} from '../gobals'
-import Input from 'material-ui/Input';
-import Button from 'material-ui/Button';
-import Grid from 'material-ui/Grid';
+import Input from 'material-ui/Input'
+import Button from 'material-ui/Button'
+import Grid from 'material-ui/Grid'
 
 //Client side validation
 function validate(values) {
-  const errors = {}
-  console.log('inside validate', values)
-  if (!values.title || values.title.trim() === '') {
-    errors.title = 'Enter a Title';
-  }
-  if (!values.categories || values.categories.trim() === '') {
-    errors.categories = 'Enter categories';
-  }
-  if (!values.content || values.content.trim() === '') {
-    errors.content = 'Enter some content';
-  }
-  return errors;
+  // TODO
+  return errors
 }
 
-class StudentForm extends Component {
+export default class StudentForm extends Component {
+  
   constructor(props) {
     super(props)
     this.state = {
@@ -35,7 +26,7 @@ class StudentForm extends Component {
   }
 
   componentDidMount() {
-    this.props.resetMe();
+    this.props.resetMe()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -69,20 +60,20 @@ class StudentForm extends Component {
         return
     }
   }
+
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.onCreateClick(this.state.inputStudent)
   }
-  render() {
-    const {submitting, newStudent} = this.props;
 
+  render() {
     return (
       <div style={{flexGrow: 1, marginTop: 30}}>
         <form onSubmit={this.handleSubmit}>
           <Grid container spacing={24}>
             <Grid item xs={3}></Grid>
 
-            <Grid container xs={6}>
+            <Grid item container xs={6}>
               <Grid item xs={6}>
                 <Input
                   onChange={this.handleChange}
@@ -116,6 +107,3 @@ class StudentForm extends Component {
     )
   }
 }
-
-
-export default StudentForm

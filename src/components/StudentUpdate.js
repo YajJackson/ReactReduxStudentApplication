@@ -2,14 +2,19 @@ import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import { updateStudent } from '../actions/student_actions'
 import {EnvironmentConstants} from '../gobals'
-import Input from 'material-ui/Input';
-import Button from 'material-ui/Button';
-import Grid from 'material-ui/Grid';
+import Input from 'material-ui/Input'
+import Button from 'material-ui/Button'
+import Grid from 'material-ui/Grid'
 
 class StudentUpdate extends Component {
+
   constructor(props) {
     super(props)
+
     this.state = {
+      oldStudent: {
+        ...this.props.activeStudent.student
+      },
       inputStudent: {
         FirstName: null,
         LastName: null,
@@ -19,31 +24,26 @@ class StudentUpdate extends Component {
   }
 
   componentDidMount() {
-    this.props.resetMe();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.newStudent.student && !nextProps.newStudent.error) {
-      window.location.replace(EnvironmentConstants.RootUrl)
-    }
+    this.props.resetMe()
   }
 
   handleChange = (e) => {
     let stateClone = {...this.state.inputStudent}
-    switch(e.target.placeholder){
-      case 'First':
+
+    switch(e.target.id){
+      case 'first':
         stateClone.FirstName = e.target.value
         this.setState({
           inputStudent: {...stateClone}
         })
         return
-      case 'Last':
+      case 'last':
         stateClone.LastName = e.target.value
         this.setState({
           inputStudent: {...stateClone}
         })
         return
-      case 'Image':
+      case 'image':
         stateClone.ProfileImage = e.target.value
         this.setState({
           inputStudent: {...stateClone}
@@ -53,38 +53,49 @@ class StudentUpdate extends Component {
         return
     }
   }
+
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.onUpdateClick(this.state.inputStudent)
+    this.validate(this.state.inputStudent)
   }
-  render() {
-    const {submitting, newStudent} = this.props;
 
+  validate = (input) => {
+    let validStudent = {
+      FirstName: input.FirstName ? input.FirstName : this.state.oldStudent._FirstName,
+      LastName: input.LastName ? input.LastName : this.state.oldStudent._LastName,
+      ProfileImage: input.ProfileImage ? input.ProfileImage : this.state.oldStudent._ProfileImage,
+    }
+    this.props.onUpdateClick(validStudent, this.props.id)
+  }
+
+  render() {
     return (
       <div style={{flexGrow: 1, marginTop: 30}}>
         <form onSubmit={this.handleSubmit}>
           <Grid container spacing={24}>
             <Grid item xs={3}></Grid>
-
-            <Grid container xs={6}>
+            <Grid item container xs={6}>
               <Grid item xs={6}>
                 <Input
+                  id='first'
                   onChange={this.handleChange}
-                  placeholder="First"
+                  placeholder={`${this.state.oldStudent._FirstName}`}
                   style={{ marginTop: '10px', width: '100%'}}
                 />
               </Grid>
               <Grid item xs={6}>
                 <Input
+                  id='last'
                   onChange={this.handleChange}
-                  placeholder="Last"
+                  placeholder={`${this.state.oldStudent._LastName}`}
                   style={{ marginTop: '10px', width: '100%'}}
                 />
               </Grid>
               <Grid item xs={12}>
                 <Input
+                  id='image'
                   onChange={this.handleChange}
-                  placeholder="Image"
+                  placeholder={`${this.state.oldStudent._ProfileImage}`}
                   style={{ marginTop: '10px', width: '100%' }}
                 />
               </Grid>
@@ -102,4 +113,4 @@ class StudentUpdate extends Component {
 }
 
 
-export default StudentForm
+export default StudentUpdate
