@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-import HeaderContainer from '../containers/HeaderContainer';
-import StudentUpdateContainer from '../containers/StudentUpdateContainer';
+import React, { Component } from 'react'
+import HeaderContainer from '../containers/HeaderContainer'
+import StudentUpdateContainer from '../containers/StudentUpdateContainer'
 
 class StudentUpdate extends Component {
-
   render() {
     return (
       <div>
@@ -14,4 +13,4 @@ class StudentUpdate extends Component {
   }
 }
 
-export default StudentUpdate;
+export default StudentUpdate

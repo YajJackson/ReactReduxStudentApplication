@@ -8,17 +8,13 @@ import { LinearProgress } from 'material-ui/Progress'
 import StudentListItem from './StudentListItem'
 
 export default class StudentList extends Component {
-  constructor(props) {
-    super(props)
-    
-  }
+
   componentWillMount() {
     this.props.fetchStudents()
   }
 
-  renderStudents(students) {
-    return students[0] ? 
-      students.map((student) => <StudentListItem key={student._Id} student={student} />) : <li></li>
+  renderStudents = (students) => {
+    return students[0] ? students.map((student) => <StudentListItem key={student._Id} student={student} />) : <li></li>
   }
 
   render() {

@@ -9,8 +9,8 @@ class StudentHome extends Component {
         <HeaderContainer type="student_home"/>
         <StudentList />
       </div>
-    );
+    )
   }
 }
 
-export default StudentHome;
+export default StudentHome

@@ -5,7 +5,7 @@ import Header from '../containers/HeaderContainer'
 import StudentDetailsContainer from '../containers/StudentDetailsContainer'
 
 class StudentDetails extends Component {
-  
+
   render() {
     return (
       <div>
@@ -16,4 +16,4 @@ class StudentDetails extends Component {
   }
 }
 
-export default StudentDetails;
+export default StudentDetails

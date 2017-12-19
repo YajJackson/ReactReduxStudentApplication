@@ -5,21 +5,11 @@ import StudentNew from '../pages/StudentNew'
 import StudentDetails from '../pages/StudentDetails'
 import StudentUpdate from '../pages/StudentUpdate'
 
-const NavBar =
-  props =>
-    <ul>
-      <li><NavLink to="/" exact>Home</NavLink></li>
-      <li><NavLink to="/students/new">New Student</NavLink></li>
-      <li><NavLink to="/students/details">Student Details</NavLink></li>
-      <li><NavLink to="/students/edit/14">Student Update</NavLink></li>
-    </ul>
-
 export default class AppContainer extends Component {
-  render () {
+  render() {
     return (
       <BrowserRouter>
         <div>
-          {/* <NavBar /> */}
           <div>
             <Switch>
               <Route path="/" exact component={StudentHome} />

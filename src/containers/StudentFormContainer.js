@@ -1,29 +1,31 @@
 import StudentForm from '../components/StudentForm.js'
-import { createStudent, createStudentSuccess, createStudentFailure, resetNewStudent } from '../actions/student_actions'
+import {  createStudent, 
+          createStudentSuccess, 
+          createStudentFailure, 
+          resetNewStudent } from '../actions/student_actions'
 import { connect } from 'react-redux'
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapStateToProps = (state) => {
   return {
-    resetMe: () => {
-      dispatch(resetNewStudent())
-    },
-    onCreateClick: (student) => {
-      dispatch(createStudent(student))
-        .then(result => {
-          if (result.payload.response && result.payload.response.status !== 200) {
-            dispatch(createStudentFailure(result.payload.response.data))
-            throw new SubmissionError(result.payload.response.data)
-          }
-          dispatch(createStudentSuccess(result.payload.data))
-        });
-    }
+    newStudent: state.students.newStudent
   }
 }
 
-function mapStateToProps(state, ownProps) {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    newStudent: state.students.newStudent
-  };
+    onCreateClick: (student) => {
+      dispatch(createStudent(student))
+      .then(
+        (result) => result.payload.response && result.payload.response.status !== 200 ?
+          dispatch(createStudentFailure(result.payload.response.data)) :
+          dispatch(createStudentSuccess(result.payload.data))
+      )
+    },
+
+    resetMe: () => dispatch(resetNewStudent())
+  }
 }
+
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudentForm)

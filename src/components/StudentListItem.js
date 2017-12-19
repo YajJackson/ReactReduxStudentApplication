@@ -14,7 +14,8 @@ const StudentListItem = (props) => {
     <Grid item xs={12} style={{ marginTop: '10px', width: '100%'}} key={student._Id}>
       <ListItem button component={({...props}) => <Link to={`/students/details/${student._Id}`} {...props} />} key={student._Id}>
         <ListItemAvatar key={student._Id}>
-            {student._ProfileImage.length > 0 ? 
+            {
+              student._ProfileImage.length > 0 ? 
               <Avatar src={`${student._ProfileImage.trim()}`} key={student._Id}></Avatar> : 
               <Avatar key={student._Id}><FolderIcon /></Avatar>
             }

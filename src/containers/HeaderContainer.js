@@ -9,7 +9,7 @@ import {  fetchStudents,
           updateStudentSuccess } from '../actions/student_actions'
 import Header from '../components/Header'
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return { 
     deletedStudent: state.students.deletedStudent,
     updatedStudent: state.students.updatedStudent
@@ -20,19 +20,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onDeleteClick: () => {
       dispatch(deleteStudent(parseInt(window.location.href.split('/').splice(-1)[0])))
-      .then((response) => {
-        !response.error ? dispatch(deleteStudentSuccess(response.payload)) : dispatch(deleteStudentFailure(response.payload));
-      })
+      .then(
+        (response) => !response.error ? 
+          dispatch(deleteStudentSuccess(response.payload)) : 
+          dispatch(deleteStudentFailure(response.payload))
+      )
     },
 
-    onUpdateClick: () => {
-      debugger
-      
-    },
-
-    resetMe: () => {
-      dispatch(resetDeletedStudent())
-    }
+    resetMe: () => dispatch(resetDeletedStudent())
   }
 }
 

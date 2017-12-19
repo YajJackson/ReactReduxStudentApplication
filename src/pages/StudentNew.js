@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import HeaderContainer from '../containers/HeaderContainer';
-import StudentFormContainer from '../containers/StudentFormContainer';
+import React, { Component } from 'react'
+import HeaderContainer from '../containers/HeaderContainer'
+import StudentFormContainer from '../containers/StudentFormContainer'
 
 class StudentNew extends Component {
   render() {
@@ -9,8 +9,8 @@ class StudentNew extends Component {
         <HeaderContainer type="student_new"/>
         <StudentFormContainer />
       </div>
-    );
+    )
   }
 }
 
-export default StudentNew;
+export default StudentNew

@@ -29,7 +29,6 @@ class StudentUpdate extends Component {
 
   handleChange = (e) => {
     let stateClone = {...this.state.inputStudent}
-
     switch(e.target.id){
       case 'first':
         stateClone.FirstName = e.target.value
@@ -70,7 +69,7 @@ class StudentUpdate extends Component {
 
   render() {
     return (
-      <div style={{flexGrow: 1, marginTop: 30}}>
+      <div style={{flexGrow: 1, marginTop: '20%'}}>
         <form onSubmit={this.handleSubmit}>
           <Grid container spacing={24}>
             <Grid item xs={3}></Grid>
