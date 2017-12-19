@@ -6,9 +6,7 @@ import Paper from 'material-ui/Paper'
 import Grid from 'material-ui/Grid'
 
 export default class StudentDetails extends Component {
-  constructor(props) {
-    super(props)
-  }
+
   componentWillUnmount() {
      this.props.resetMe()
   }

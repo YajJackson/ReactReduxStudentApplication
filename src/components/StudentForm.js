@@ -7,10 +7,7 @@ import Button from 'material-ui/Button'
 import Grid from 'material-ui/Grid'
 
 //Client side validation
-function validate(values) {
-  // TODO
-  return errors
-}
+
 
 export default class StudentForm extends Component {
   
@@ -63,7 +60,11 @@ export default class StudentForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.onCreateClick(this.state.inputStudent)
+    this.validate(this.state.inputStudent)
+  }
+
+  validate = (input) => {
+    input.FirstName && input.LastName ? this.props.onCreateClick(input) : alert('Please enter a first and last name.')
   }
 
   render() {
